@@ -7,6 +7,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
+                
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -15,20 +16,24 @@
                                     <i class="fa fa-money fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">${{source}}</div>
-                                    <div>Primary Fund Source</div>
+                                     <div class="huge">${{savings}}</div>
+                                    <div>Savings Account</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#/account">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
+                                 <div class="input-group">
+                                   <input type="number" class="form-control" placeholder="Add to savings..." ng-model="delta">
+                                   <span class="input-group-btn">
+                                    <button class="btn btn-success" type="button" ng-click="addToSavings()"><i class="fa fa-plus-circle"></i></button>
+                                   </span>
+                                </div>
                             </div>
                         </a>
                     </div>
                 </div>
+                
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
@@ -37,27 +42,127 @@
                                     <i class="fa fa-university fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">${{savings}}</div>
-                                    <div>Savings Account</div>
+                                     <div class="huge">${{source}}</div>
+                                    <div>Primary Fund Source</div>
                                 </div>
                             </div>
                         </div>
                         <div class="panel-footer">
-                             <div class="input-group">
-                                   <input type="number" class="form-control" placeholder="Add to savings..." ng-model="delta">
-                                  <span class="input-group-btn">
-                                    <button class="btn btn-success" type="button" ng-click="addToSavings()"><i class="fa fa-plus-circle"></i></button>
-                                  </span>
-                             </div>
+                              <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
                         </div>  
                     </div>
                 </div>
             </div>
+            <div class="row">             
+                 <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-trophy fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">${{current_goal.total}}</div>
+                                    <div>Current Goal</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                           <div>
+                                    <p>
+                                        <strong>{{current_goal.per}}% Saved</strong>
+                                        <span class="pull-right text-muted"></span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': current_goal.width}">
+                                            <span class="sr-only">{{current_goal.total}}% Saved</span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>  
+                    </div>
+                </div>
+                
+                 <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-line-chart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">${{year_goal.total}}</div>
+                                    <div>Yearly Goal</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                             <div>
+                                    <p>
+                                        <strong>{{year_goal.per}}% Saved</strong>
+                                        <span class="pull-right text-muted"></span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': year_goal.width}">
+                                            <span class="sr-only">{{year_goal.per}}% Saved</span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>  
+                    </div>
+                </div>              
+            </div>
+            
+           <div class="row">
+               <div class="col-lg-12 col-md-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-12 text-right">
+                                    <div><h5>Mini Goals</h5></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row"> 
+                                <div class="col-md-12 text-center">                        
+                                    <form class="form-inline">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">Goal Name</div>
+                                                <input type="text" class="form-control" ng-model="mini_goal_name" placeholder="Name">
+                                                <div class="input-group-addon">Goal Amount</div>
+                                                <input type="number" class="form-control" ng-model="mini_goal_amount" placeholder="Amount">
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" ng-click="addToMiniGoals()"><i class="fa fa-plus-circle"> Create Goal</i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> 
+                        <div ng-repeat="mini in mini_goals" class="panel-footer">
+                             <div>
+                                    <p>
+                                        <i class="fa fa-trophy" ng-show="mini.show_trophy"></i><strong> {{mini.name}} </strong><i class="fa fa-trophy" ng-show="mini.show_trophy"></i>                                      
+                                    </p>                                   
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': mini.width}">
+                                            <span class="sr-only">{{mini.per}}% Saved</span>
+                                              <div ng-show="mini.show_trophy==false">{{mini.per}}%</div>
+                                             <div><strong>${{mini.goal}}</strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>  
+                    </div>
+                </div>   
+           </div>
          
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-8">
-                    
+                <div class="col-lg-8">                    
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-history fa-fw"></i> History
@@ -67,20 +172,19 @@
                             <ul class="timeline">
                                 
                                       <li ng-repeat="item in history.slice().reverse()" class="{{item.class}}">
-                                        <div class="timeline-badge info" ><i class="fa fa-dollar"></i>
+                                        <div class="timeline-badge info"><i class="fa fa-check"></i>
                                         </div>
                                         <div class="timeline-panel">
                                             <div class="timeline-heading">
-                                                <h4 class="timeline-title">Fund Transfer</h4>
+                                                <h4 class="timeline-title">{{item.title}}</h4>
                                                 <p><small class="text-muted"><i class="fa fa-clock"></i> {{item.timestamp | date:'medium' }}</small>
                                                 </p>
                                             </div>
                                             <div class="timeline-body">
-                                              <p>You deposited <b>${{item.delta}}</b>!  {{item.phrase}}</p> 
+                                              <p>{{item.comment}} <b>${{item.delta}}</b>!  {{item.phrase}}</p> 
                                             </div>
                                         </div>
-                                    </li>
-                                    
+                                    </li>                              
                             </ul>
                         </div>
                         <!-- /.panel-body -->

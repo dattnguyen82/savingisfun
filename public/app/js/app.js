@@ -8,6 +8,7 @@ angular.module('savingisfun', [
 config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'account.html'})
         .when('/account', {templateUrl: 'account.html', controller: "accountController"})
+         .when('/friends', {templateUrl: 'friends.html', controller: "accountController"})
         .when('/statistics', {templateUrl: 'statistics.html', controller: "statisticsController"})
         .otherwise({redirectTo: '/'});
 }]).
