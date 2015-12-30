@@ -64,8 +64,15 @@
                                     <i class="fa fa-trophy fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">${{current_goal.total}}</div>
                                     <div>Current Goal</div>
+                                    <div class="huge">${{current_goal.total}}</div>
+                                    <div>New Goal</div>
+                                     <div class="input-group">
+                                       <input type="number" class="form-control" placeholder="Set new current goal" ng-model="new_current_goal">
+                                       <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button" ng-click="setNewCurrentGoal()"><i class="fa fa-bullseye"></i></button>
+                                       </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -93,8 +100,15 @@
                                     <i class="fa fa-line-chart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">${{year_goal.total}}</div>
                                     <div>Yearly Goal</div>
+                                    <div class="huge">${{year_goal.total}}</div>
+                                    <div>New Goal</div>
+                                     <div class="input-group">
+                                       <input type="number" class="form-control" placeholder="Set new yearly goal" ng-model="new_year_goal">
+                                       <span class="input-group-btn">
+                                        <button class="btn btn-info" type="button" ng-click="setNewYearGoal()"><i class="fa fa-bullseye"></i></button>
+                                       </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

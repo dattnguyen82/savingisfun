@@ -9,8 +9,13 @@ angular.module('savingisfun.controller.account', [])
    $scope.savings = 250.0;
    $scope.delta = 0;
    
+   
    $scope.year_goal = { total: 5000.0, per: 0, width: '' };  
    $scope.current_goal = { total: 1000.0, per: 0, width: '' };
+   
+   
+   $scope.new_current_goal = $scope.current_goal.total;
+   $scope.new_year_goal = $scope.year_goal.total;
    
    $scope.history = [];
    $scope.phrases = ["Great!", "Keep it up!", "You rock!", "Excellent!", "You'll hit your goal in no time!", "Nice job!", "There's no stopping you!"];
@@ -24,8 +29,18 @@ angular.module('savingisfun.controller.account', [])
       $scope.year_goal.per = Math.min( ($scope.savings / $scope.year_goal.total) * 100, 100 );
       $scope.year_goal.width = String($scope.year_goal.per + '%');
       
+      if ( $scope.year_goal.per >= 100)
+      {
+         //add_to_history("Yearly Goal Reached!", "You have saved ", $scope.year_goal.total, "", "'fa fa-money'"); 
+      }
+      
       $scope.current_goal.per = Math.min( ($scope.savings / $scope.current_goal.total) * 100, 100); 
       $scope.current_goal.width = String($scope.current_goal.per + '%');
+      
+      if ( $scope.current_goal.per >= 100)
+      {
+         //add_to_history("Current Goal Reached!", "You have saved ", $scope.year_goal.total, "", "'fa fa-money'"); 
+      }
       
       var i = 0;
       for (i = 0; i<$scope.mini_goals.length; i++)
@@ -35,6 +50,7 @@ angular.module('savingisfun.controller.account', [])
          if ( $scope.mini_goals[i].per >= 100)
          {
              $scope.mini_goals[i].show_trophy = true;
+             //add_to_history($scope.mini_goals[i].name +  " Mini Goal Reached!", "You have saved ", $scope.year_goal.total, "", "'fa fa-money'");  
          }
          
       }
@@ -57,7 +73,7 @@ angular.module('savingisfun.controller.account', [])
                              class: timeline_class, 
                              phrase: history_phrase } );
        
-   }
+   };
    
    $scope.addToSavings = function(){
       var d = Math.min($scope.delta, $scope.source);    
@@ -69,6 +85,18 @@ angular.module('savingisfun.controller.account', [])
       var p = $scope.phrases[Math.floor((Math.random() * 6))];
       
       add_to_history("Fund Transfer","Deposited ", d, p, "'fa fa-money'");      
+   };
+   
+   $scope.setNewCurrentGoal = function(){
+      $scope.current_goal.total =  $scope.new_current_goal;
+      
+      calculate_goals();   
+   };
+   
+   $scope.setNewYearGoal = function(){
+      $scope.year_goal.total =  $scope.new_year_goal; 
+      
+      calculate_goals();   
    };
    
    $scope.addToMiniGoals = function(){
